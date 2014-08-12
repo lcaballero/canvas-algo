@@ -1,0 +1,14 @@
+{
+  "name": "mixu_minimal",
+  "description": "Minimal router and client",
+  "version": "0.0.1",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.3"
+  },
+  "dependencies": {
+    "canvas": "^1.1.6",
+    "coffee-script": "^1.7.1",
+    "lodash": "^2.4.1"
+  }
+}

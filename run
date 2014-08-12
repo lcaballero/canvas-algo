@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+rm images/*.png
+./index.js
+open "$1"
