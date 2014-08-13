@@ -8,27 +8,17 @@ module.exports = (dir) ->
 
   dir ?= path.resolve(__dirname, "../images")
 
-  return {
+  toImages = (f, arr...) ->
+    rs = {}
+    for d in arr
+      ((dwg) ->
+        image   = path.resolve(dir, "#{dwg}.png")
+        rs[dwg] = -> f(dwg)({ filename: image }))(d)
+    rs
 
-    vlade : ->
-      require('./vlade')({
-        filename: path.resolve(dir, 'vlade.png')
-      })
+  lookup            = (name) -> textures[name]
+  req               = (name) -> require("./#{name}")
+  drawings          = toImages(req, 'vlade', 'graphing', 'sandgrains')
+  drawings.textures = toImages(lookup, 'soft-red', 'soft-yellow')
 
-    textures:
-      softRed : ->
-          textures.softRed({
-            filename: path.resolve('soft-red.png')
-          })
-      softYellow : ->
-        textures.softYellow({
-          filename: path.resolve(dir, 'soft-yellow.png')
-        })
-
-    graphing: ->
-      require('./graphing')({
-        filename: path.resolve(dir, 'graphing.png')
-      })
-
-  }
-
+  return drawings

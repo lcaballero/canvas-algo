@@ -2,6 +2,13 @@
 
 module.exports = {
 
+  graph : (opts, f) ->
+    {minX, maxX, increment} = opts
+    @moveTo(minX, f(minX))
+    for x in [minX..maxX] by increment
+      @lineTo(x, f(x))
+    @stroke()
+
   draw : (args...) ->
     fn = args.shift()
     fn.apply(this, args);
@@ -35,6 +42,12 @@ module.exports = {
         for i in [a..b] by step
           @moveTo(i, 0).lineTo(i, size))
       .restore()
+
+  iterate : (a, b, step, fn) ->
+    i = 0
+    for e in [a..b] by step
+      @draw(fn, e, i++)
+    this
 
   axis : ({x1, x2, y1, y2}) ->
     @save()

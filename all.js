@@ -12,4 +12,7 @@ var dwg = drawings(dir)
 
 dwg.graphing()
 dwg.vlade()
+dwg.sandgrains()
+dwg.textures['soft-red']()
+dwg.textures['soft-yellow']()
 

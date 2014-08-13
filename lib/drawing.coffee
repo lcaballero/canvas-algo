@@ -16,8 +16,15 @@ createContext = (canvas) ->
 
 bindFunction = (target, name) ->
     target[name] = (args...) ->
-        target.context[name](args...)
-        this
+      p = []
+      for a in args
+        if a.isVec
+          p.push(a.x, a.y)
+        else
+          p.push(a)
+
+      target.context[name](p...)
+      this
 
 bindAssignment = (target, name, value) ->
     target[name] = (val) ->
@@ -51,7 +58,9 @@ drawing = (opts) ->
   callback  ?= ->
 
   stream.on('data', (c) -> writer.write(c))
-  stream.on('end', -> callback())
+  stream.on('end', ->
+    console.log('finished writing:', filename)
+    callback())
 
   _.defaults({}, opts, bindAsContext({
     canvas      : canvas

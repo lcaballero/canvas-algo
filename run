@@ -2,5 +2,5 @@
 
 
 rm images/*.png
-./index.js
-open "$1"
+./index.js "$1"
+open "images/$1.png"
