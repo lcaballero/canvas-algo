@@ -1,6 +1,6 @@
 {
-  "name": "mixu_minimal",
-  "description": "Minimal router and client",
+  "name": "canvas-algo",
+  "description": "Experiment to produce algorithmic canvas drawings",
   "version": "0.0.1",
   "devDependencies": {
     "chai": "^1.9.1",

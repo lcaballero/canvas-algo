@@ -1,10 +1,23 @@
 # Introduction
-
+Experiment that produces algorithmic drawings.
 
 ## Setup
 
+This will work for the most part.  The catch being that the `run` script assumes
+`open` will launch a preview of the image generated.  On Mac this works fine, but
+untested on other OSes.
 
-## Usage
+```
+%> git clone [this-repo]
+%> npm install
+%> ./run [graphing, sandgrains, soft-red, soft-yellow, vlade]
+
+```
+
+## Examples
+
+See the images in the `exhibit` directory.  By default `index.js` will place generated
+images in the `images/` dir, but `all.js` will put them in `exhibit/`.
 
 
 ## License
