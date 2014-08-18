@@ -58,4 +58,31 @@ module.exports = {
       .stroke()
       .restore()
 
+  lineVecs : (v, vecs...) ->
+    if !vecs? or vecs.length is 0
+      throw new Error("Cannot draw a line with out a position vector")
+    else
+      @save().beginPath().moveTo(v)
+      for e in vecs
+        v = v.add(e)
+        @lineTo(v)
+      @stroke().restore()
+
+  strokeVec : (p, v, cb, inc=1, pw=1, ph=1) ->
+    if !p? or !v?
+      throw new Error("Method strokeVecs requires a position vector and a target vector.")
+    else
+      r   = v.magnitude()
+      dv  = v.scale(1/r)
+      k   = r
+      while (k >= 0)
+        cb.call(@, k/r)
+        @fillRect(p, pw, ph)
+        p = p.add(dv)
+        k -= inc
+    @
+
+  pctAlpha : (color) ->
+    (pct) -> @fillStyle(color.alpha(color.alpha() * pct).toColor())
+
 }

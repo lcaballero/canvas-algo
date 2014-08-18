@@ -15,4 +15,6 @@ dwg.vlade()
 dwg.sandgrains()
 dwg.textures['soft-red']()
 dwg.textures['soft-yellow']()
-
+dwg['grain-spread']()
+dwg['vector-1']()
+dwg['vector-2']()

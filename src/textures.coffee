@@ -30,5 +30,5 @@ texture = (opts) ->
 
 module.exports = {
   'soft-red' : texture
-  'soft-yellow' : texture
+  'soft-yellow' : (opts) -> texture(_.defaults({}, opts, { color: [256, 256, 0] }))
 }

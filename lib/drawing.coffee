@@ -3,8 +3,11 @@ fs         = require 'fs'
 _          = require 'lodash'
 path       = require 'path'
 dump       = require './dump-context'
-extensions = require './drawing-plugins'
 
+# TODO: Remove these and inject drawing instead of
+# TODO: globally configuring the instance.
+extensions = require './drawing-plugins'
+painting   = require './painting-plugins'
 
 defaults =
     name   : 'text.png'
@@ -70,6 +73,7 @@ drawing = (opts) ->
     extend      : (obj) -> _.extend(@, obj or {})
   }))
   .extend(extensions)
+  .extend(painting)
 
 
 module.exports = drawing
