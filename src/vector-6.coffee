@@ -38,13 +38,16 @@ module.exports = (opts) ->
     height  : height
     filename: filename
   })
-  .clearCanvas()
+  .clearCanvas([0,0,0,.2].toColor())
   .toCartesian()
   .moveTo(0, 0)
   .draw(->
+
+  )
+  .draw(->
     reps      = 500
     r         = 6
-    particle  = [0, 0, 150, .8]
+    particle  = [255, 255, 204, 1]
 
     for i in [0..40]
       v = viewV()
@@ -58,3 +61,4 @@ module.exports = (opts) ->
       for n in [0..reps]
         @draw(cluster, v, 240, 360, r+2, .9, .6, particle)
   )
+
