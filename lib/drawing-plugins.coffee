@@ -14,11 +14,14 @@ module.exports = {
     fn.apply(this, args);
     this
 
-  toCenter : ->
-    @translate(@width / 2, @height / 2)
-
   toCartesian : ->
     @toCenter().scale(1, -1)
+
+  toCenter      : -> @translate(@width /  2, @height /  2)
+  toBottomRight : -> @translate(@width /  2, @height / -2)
+  toBottomLeft  : -> @translate(@width / -2, @height / -2)
+  toTopLeft     : -> @translate(@width / -2, @height /  2)
+  toTopRight    : -> @translate(@width /  2, @height /  2)
 
   clearCanvas : (color = "#ffffff") ->
     @fillStyle(color).fillRect(0, 0, @canvas.width, @canvas.height)
@@ -82,7 +85,23 @@ module.exports = {
         k -= inc
     @
 
+
   pctAlpha : (color) ->
     (pct) -> @fillStyle(color.alpha(color.alpha() * pct).toColor())
+
+  ###
+    Assuming the center is at (0,0) this method begins a path moving
+    the pen to the (0,r) and drawing, by default, from 0rads to 2PI radians,
+    which amounts to a full circle.
+
+    @param { Vector } v - Position vector of the center of the arc.
+    @param { Number } r - The radius of the circle.
+    @param { Number } a1 - The starting angle (radians), which defaults to 0 radians.
+    @param { Number } a2 - The finishing angle (radians), which defaults to 2PI.
+  ###
+  edgeArc : (v, r, a1=0, a2=_2PI) ->
+    @beginPath()
+      .moveTo(v.add(r, 0))
+      .arc(v, r, a1, a2)
 
 }

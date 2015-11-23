@@ -2,6 +2,9 @@
   "name": "canvas-algo",
   "description": "Experiment to produce algorithmic canvas drawings",
   "version": "0.0.1",
+  "scripts": {
+    "test":"mocha --reporter list --compilers coffee:coffee-script/register tests"
+  },
   "devDependencies": {
     "chai": "^1.9.1",
     "mocha": "^1.21.3"
